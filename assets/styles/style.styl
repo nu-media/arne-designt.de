@@ -1,0 +1,1213 @@
+rem(val)
+  u = unit(val)
+
+  if(u is 'px') {
+    return unit(val / 16, 'rem')
+  } else {
+    return unit(val, u)
+  }
+
+colW(cols)
+  return (100% / 12 * cols)
+
+/* inter-300 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/inter-v2-latin-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/inter-v2-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inter-v2-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/inter-v2-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inter-v2-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inter-v2-latin-300.svg#Inter') format('svg'); /* Legacy iOS */
+}
+/* inter-700 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/inter-v2-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/inter-v2-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inter-v2-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/inter-v2-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inter-v2-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inter-v2-latin-700.svg#Inter') format('svg'); /* Legacy iOS */
+}
+
+light = #FFFFFF
+dark = #0c0c0c
+medium = #F7F7F7
+yellow = #FFC945
+
+
+*
+  margin 0
+  padding 0
+  box-sizing border-box
+
+html
+  font-weight 300
+  font-family "Inter"
+  color dark
+  font-size 15px
+
+.jsHoverImage
+  position absolute
+  width auto
+  height auto
+
+strong
+  font-family "Inter"
+  font-weight 700
+
+img
+  width 100%
+  height auto
+
+a
+  position relative
+  text-decoration none
+  color dark
+
+  &[href^="http"]
+    &:after
+      content ""
+      display inline-block
+      width .68em
+      background url(/assets/images/pfeilschraeg.svg)
+      height .7em
+      background-size contain
+      margin-left .3em
+
+    &:not(.teaser):before
+      right 1em
+
+  &.arrow
+    &:after
+      content ""
+      display inline-block
+      width .9em
+      height .41em
+      background url(/assets/images/pfeil.svg)
+      background-size contain
+      margin-left .3em
+      margin-bottom .02em
+
+    &:before
+      right 1.1em
+
+  &:not(.teaser)
+    &:before
+      position absolute
+      transition bottom 300ms ease-in-out
+      bottom -0.05em
+      left 0
+      right 0
+      height .05em
+      background dark
+      content ""
+
+    &:hover
+      &:before
+        bottom 37%
+
+     &.back
+      display inline-flex
+      align-items center
+      margin-top rem(50px)
+
+      &:before
+        left 1.1em
+      &:after
+        order -1
+        content ""
+        display inline-block
+        width .9em
+        height .41em
+        background url(/assets/images/pfeil.svg)
+        transform rotate(180deg)
+        background-size contain
+        margin-right .3em
+        margin-bottom .02em
+
+.wrapper
+  margin 0 auto
+  max-width rem(1680px)
+  padding-left rem(20px)
+  padding-right rem(20px)
+
+  &.impressum
+  &.datenschutz
+    font-size rem(30px)
+    line-height rem(45px)
+    padding rem(150px) rem(20px)
+
+    p
+      margin-bottom rem(20px)
+      display block
+
+    h1
+    h2
+    h3
+    h4
+      margin-bottom rem(20px)
+      padding-top rem(20px)
+      display block
+
+header
+  &:not(.index)
+    padding-top 150px
+
+
+    .row
+      align-items center
+
+      .col-4
+        z-index 1
+
+    .topbar
+      width 100%
+      padding 30px calc(50vw - 750px)
+      max-width none
+      @media (max-width: 1590px)
+        padding 30px 20px
+
+
+    h1
+      font-size rem(120px)
+      white-space nowrap
+      font-family 'Inter'
+      font-weight 700
+      margin-bottom rem(100px)
+
+    .type
+      text-transform uppercase
+      margin-bottom rem(60px)
+      letter-spacing rem(1px)
+
+    .note
+      .up
+        text-transform uppercase
+        letter-spacing rem(1px)
+
+  &.index
+    background yellow
+    height 100vh
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+    position relative
+
+  &:after
+    content url('/assets/images/spitze.svg');
+    display inline-block
+    position absolute
+    bottom rem(50px)
+    left 50%
+    transform translateX(-50%)
+
+  &:before
+    left 50%
+    transform translateX(-50%)
+    content ""
+    width 2px
+    height rem(30px)
+    background dark
+    display inline-block
+    position absolute
+    bottom rem(58px)
+
+  &.impressum
+  &.datenschutz
+    &:before
+    &:after
+      display none
+
+  @media (max-width: rem(800px))
+    &:before
+    &:after
+      display none
+
+  .topbar
+    position absolute
+    @extend .wrapper
+    top 0
+    display flex
+    width 100%
+    align-items center
+    justify-content space-between
+    padding rem(30px) rem(20px)
+
+    a.arrow
+      font-size rem(40px)
+
+    a:not(.arrow)
+      max-width 155px
+
+      @media (max-width: rem(600px))
+        max-width 100px
+        svg
+          width 100%
+
+      &:before
+        display none
+
+    @media (max-width: rem(800px))
+      height 100%
+      flex-direction column
+      align-items flex-start
+
+      a.arrow
+        font-size: rem(30px)
+
+  blockquote
+    color dark
+    @extend .wrapper
+    font-size rem(110px)
+
+    @media (min-width: rem(2000px))
+      font-size rem(130px)
+
+    @media (max-width: rem(1440px))
+      font-size 6.8vw
+
+    @media (max-width: rem(680px))
+      font-size rem(40px)
+      line-height rem(50px)
+
+
+    a
+      font-family "Inter"
+      font-weight 700
+      text-decoration none
+      color dark
+
+main
+  .timeline
+    margin 0 auto
+    @extend .wrapper
+    display flex
+    position relative
+    align-items stretch
+
+    .scroller
+      max-width colW(10)
+      width 100%
+
+      @media (max-width: 800px)
+        max-width 100%
+
+      .project
+        position relative
+        display block
+        margin-top rem(195px)
+
+        @media (max-width: rem(800px))
+          margin-top rem(70px)
+
+        &:after
+          content url('/assets/images/spitze.svg');
+          display inline-block
+          position absolute
+          bottom -7px
+          left rem(260px)
+
+          @media (max-width: 800px)
+            display none
+
+          @media (max-width: 1600px)
+              left 16vw
+
+        &:before
+          content ""
+          width 2px
+          height rem(680px)
+          background dark
+          display inline-block
+          position absolute
+          bottom 0px
+          left rem(267px)
+
+          @media (max-width: 800px)
+            display none
+          @media (max-width: 1600px)
+            left calc(16vw + 6px)
+            height 70vw
+
+        &:last-of-type
+          &:after
+            display none
+
+        h2
+          position absolute
+          left rem(522px)
+          top rem(120px)
+          line-height rem(65px)
+          font-size rem(60px)
+          font-family "Inter"
+          font-weight 700
+
+          @media (max-width: 1600px)
+              left 30vw
+
+          @media (max-width: 800px)
+            font-size 30px
+            padding 0 0 rem(20px) rem(30px)
+
+          small
+            display block
+            font-family "Inter"
+            font-size rem(30px)
+            letter-spacing: rem(1px)
+            font-weight 200
+            text-transform uppercase
+
+        img
+          width 100%
+          height auto
+          display block
+
+        a
+          &.teaser
+            position relative
+            display block
+            transition filter 300ms ease-in-out
+
+            > *:not(img)
+              z-index: 6
+            &:before
+              width 100%
+              height 100%
+              background rgba(yellow, 0.85)
+              content ""
+              position absolute
+              top 0
+              right 0
+              opacity 0
+              transition opacity 300ms ease-in-out
+              z-index 5
+
+              @media (max-width: 800px)
+                height calc(100% - 82px)
+                top auto
+                bottom 0
+
+            &:hover
+              &:before
+                opacity 1
+
+            &:hover
+              img
+                filter grayscale(100%)
+
+            @media (max-width: rem(800px))
+              display flex
+              flex-direction column
+              h2
+                position relative
+                order -1
+                left 0
+                top 0
+                font-size rem(35px)
+                line-height rem(35px)
+
+                small
+                  font-size rem(25px)
+              .year
+                display none
+
+            @media (max-width: rem(486px))
+              h2
+                font-size rem(23px)
+                small
+                  font-size rem(20px)
+
+
+          &:not(.teaser)
+            @extend a.arrow
+            margin-left rem(522px)
+            font-size rem(35px)
+            display inline-block
+            margin-top rem(45px)
+            margin-bottom rem(230px)
+
+            @media (max-width: 1600px)
+              margin-left 30vw
+
+            @media (max-width: rem(800px))
+              margin-bottom rem(70px)
+              margin-left rem(30px)
+              margin-top rem(25px)
+              font-size rem(25px)
+
+            &:before
+              height 2px
+
+        span
+          &.year
+            font-size rem(300px)
+            display inline-block
+            position absolute
+            top rem(100px)
+            left rem(100px)
+
+            @media (max-width: 1600px)
+              font-size 16vw
+              left 3vw
+
+    .fixedwrapper
+      max-width colW(2)
+      width 100%
+      display block
+      padding-bottom 1023px
+      @media (max-width: 1600px)
+        padding-bottom calc(314px + 45vw)
+
+      @media (max-width: 800px)
+        display none
+
+      .fixed
+        width 100%
+        display inline-block
+        position sticky
+        top rem(150px)
+        line-height rem(310px)
+        margin-top 290px
+        height rem(20px)
+        font-size rem(300px)
+        white-space nowrap
+        z-index 10
+
+        @media (max-width: 1600px)
+          margin-top calc(149px + 8vw)
+          font-size 16vw
+
+  .anfrage
+    background yellow
+    align-items center
+    justify-content center
+    display flex
+    flex-direction column
+
+    &.index
+      padding rem(135px) 0
+
+    p
+      text-align center
+      font-size rem(60px)
+      max-width rem(1364px)
+      margin 0 auto
+      margin-top rem(100px)
+
+      @media (max-width: rem(800px))
+        font-size rem(40px)
+
+    @media (max-width: rem(800px))
+      padding rem(30px) 0
+      min-height 0
+      .wrapper
+        display flex
+        flex-direction column
+        p
+          margin-bottom 0
+          font-size rem(35px)
+          text-align left
+        img
+          order -1
+          margin-bottom rem(60px)
+          height calc(100vw - 55px)
+          object-fit cover
+          object-position center center
+
+  .sellingpoints
+    @extend .wrapper
+
+    article
+      display flex
+      padding-bottom rem(400px)
+      position relative
+
+      @media (max-width: rem(1000px))
+        flex-flow row wrap
+        padding-bottom rem(170px)
+
+      &:first-of-type
+        padding-top rem(189px)
+
+      h2
+        max-width colW(4)
+        width 100%
+        font rem(60px) "Inter"
+        font-weight 700
+
+        @media (max-width: rem(1000px))
+          max-width 100%
+
+        @media (max-width: rem(800px))
+          font-size rem(35px)
+          margin-bottom rem(15px)
+
+      p
+        font-size rem(60px)
+        max-width colW(8)
+        width 100%
+
+        @media (max-width: rem(1000px))
+          max-width 100%
+
+        @media (max-width: rem(800px))
+          max-width 100%
+          font-size rem(35px)
+
+      .animation
+        position absolute
+        width 100%
+        z-index -1
+        bottom rem(183px)
+
+        &1
+          svg
+            max-width rem(398px)
+            fill medium
+            position absolute
+            bottom 0
+            @media (max-width: rem(800px))
+              max-width rem(236px)
+              bottom rem(-50px)
+            @media (max-width: rem(1000px))
+              bottom rem(-100px)
+
+            &:first-of-type
+              left 0
+
+            &:last-of-type
+              right 0
+          &.animate
+            svg:first-of-type
+              animation sp1-l forwards 1000ms 1 ease-in
+
+            svg:last-of-type
+              animation sp1-r forwards 1000ms 1 ease-in
+
+            @media (max-width: rem(800px))
+              svg:first-of-type
+                animation sp1-m-l forwards 1000ms 1 ease-in
+
+              svg:last-of-type
+                animation sp1-m-r forwards 1000ms 1 ease-in
+
+            @keyframes sp1-l
+              0%
+                left 0
+              70%
+                left calc(50% - 18.4325rem)
+                fill medium
+              100%
+                left calc(50% - 18.4325rem)
+                fill yellow
+
+            @keyframes sp1-r
+              0%
+                right 0
+              70%
+                right calc(50% - 18.4325rem)
+                fill medium
+              100%
+                right calc(50% - 18.4325rem)
+                fill yellow
+
+            @keyframes sp1-m-l
+              0%
+                left 0
+              70%
+                left calc(50% - 11.4325rem)
+                fill medium
+              100%
+                left calc(50% - 11.4325rem)
+                fill yellow
+
+            @keyframes sp1-m-r
+              0%
+                right 0
+              70%
+                right calc(50% - 11.4325rem)
+                fill medium
+              100%
+                right calc(50% - 11.4325rem)
+                fill yellow
+        &2
+          svg
+            max-width rem(414px)
+            position absolute
+            right 0
+            bottom 0
+
+            @media (max-width: rem(800px))
+              max-width rem(255px)
+              bottom rem(-50px)
+            @media (max-width: rem(1000px))
+              bottom rem(-100px)
+
+
+            rect
+              fill medium
+              transform scale(0)
+              transform-origin center center
+
+          &.animate
+            svg
+              rect
+                &:first-child
+                  animation sp2-1 forwards 1700ms ease-in-out
+                &:nth-child(2)
+                  animation sp2-2 forwards 1700ms ease-in-out
+                &:nth-child(3)
+                  animation sp2-3 forwards 1700ms ease-in-out
+
+                @keyframes sp2-1
+                  0%
+                    transform scale(0)
+                    fill medium
+                  25%
+                    transform scale(1)
+                    fill medium
+                  75%
+                    transform scale(1)
+                    fill medium
+                  100%
+                    transform scale(1)
+                    fill yellow
+                @keyframes sp2-2
+                  25%
+                    transform scale(0)
+                    fill medium
+                  50%
+                    transform scale(1)
+                    fill medium
+                  75%
+                    transform scale(1)
+                    fill medium
+                  100%
+                    transform scale(1)
+                    fill yellow
+                @keyframes sp2-3
+                  45%
+                    transform scale(0)
+                    fill medium
+                  70%
+                    transform scale(1)
+                    fill medium
+                  75%
+                    transform scale(1)
+                    fill medium
+                  100%
+                    transform scale(1)
+                    fill yellow
+        &3
+          @keyframes sp3
+            0%
+              background-position 0px 0px
+              left 0
+
+            100%
+              background-position -35370px 0px
+              left 35%
+          @keyframes sp3-m
+            0%
+              background-position 0px 0px
+              left -30%
+
+            100%
+              background-position -35370px 0px
+              left -10%
+
+          .shapeshifter
+            animation-duration 1500ms
+            animation-timing-function steps(90)
+            animation-fill-mode forwards
+            width 393px
+            height 393px
+            background-repeat no-repeat
+            background-image url("/assets/images/morph.svg")
+            position absolute
+            bottom 0
+            left 0
+
+            @media (max-width: rem(800px))
+              bottom -200px
+              transform scale(.7);
+              left -30%
+
+          &.animate
+            .shapeshifter.play
+              animation-name sp3
+
+              @media (max-width: rem(800px))
+                animation-name sp3-m
+
+
+        &4
+          svg
+            max-width rem(1002px)
+            position absolute
+            right 0
+            bottom 0
+
+            @media (max-width: rem(800px))
+              bottom rem(-50px)
+            @media (max-width: rem(1000px))
+              bottom rem(-100px)
+
+
+            rect, circle
+              fill medium
+
+            :nth-child(1)
+              transform translateY(100%)
+            :nth-child(2)
+              transform translateY(-100%)
+            :nth-child(3)
+              transform translateY(100%)
+            :nth-child(4)
+              transform translateY(-100%)
+
+          &.animate
+            svg
+              :nth-child(1)
+                animation sp4-1 forwards 1600ms ease-in-out
+              :nth-child(2)
+                animation sp4-2 forwards 1600ms ease-in-out
+              :nth-child(3)
+                animation sp4-3 forwards 1600ms ease-in-out
+              :nth-child(4)
+                animation sp4-4 forwards 1600ms ease-in-out
+
+            @keyframes sp4-1
+              0%
+                transform translateY(100%)
+              20%
+                transform translateY(0%)
+                fill medium
+              80%
+                transform translateY(0%)
+                fill medium
+              100%
+                fill yellow
+                transform translateY(0%)
+
+            @keyframes sp4-2
+              20%
+                transform translateY(-100%)
+              40%
+                transform translateY(0%)
+                fill medium
+              80%
+                transform translateY(0%)
+                fill medium
+              100%
+                fill yellow
+                transform translateY(0%)
+            @keyframes sp4-3
+              40%
+                transform translateY(100%)
+              60%
+                transform translateY(0%)
+                fill medium
+              80%
+                transform translateY(0%)
+                fill medium
+              100%
+                fill yellow
+                transform translateY(0%)
+
+            @keyframes sp4-4
+              60%
+                transform translateY(-100%)
+              80%
+                transform translateY(0%)
+                fill medium
+              80%
+                transform translateY(0%)
+                fill medium
+              100%
+                fill yellow
+                transform translateY(0%)
+
+  .cta
+    background yellow
+    padding rem(100px) 0
+
+    .col-10
+      margin-bottom 0
+
+    p
+      font-size rem(60px)
+      line-height rem(70px)
+
+
+footer
+  padding rem(100px) 0
+  background medium
+
+  .wrapper
+    display flex
+    align-items flex-end
+    font-size rem(30px)
+
+    p
+      margin-top rem(30px)
+
+      @media (max-width: rem(800px))
+        margin-top rem(50px)
+    a
+      display inline-block
+      line-height rem(35px)
+      margin-bottom 5px
+      &:before
+        height 1px
+
+      &.mail
+        margin-bottom rem(10px)
+
+    ul
+      list-style none
+      line-height rem(35px)
+      text-align right
+
+      li
+        margin-bottom 5px
+
+      &:first-of-type
+        margin-left auto
+
+    @media (max-width: rem(800px))
+      flex-direction column
+      align-items flex-start
+
+      .copyright
+        margin-bottom rem(50px)
+
+      ul
+        text-align left
+
+        &:first-of-type
+          margin 0
+
+.fade
+  opacity 0
+  transform translateY(150px)
+  transition all 600ms
+
+  &.faded
+    opacity 1
+    transform translateY(0)
+
+.link
+  margin-top rem(80px)
+
+.row
+  @extend .wrapper
+  margin-left rem(-20px)
+  margin-right rem(-20px)
+  display flex
+  flex-flow row wrap
+  font-size rem(30px)
+  line-height rem(45px)
+  margin 0 auto
+
+  &.main
+    @media (max-width: rem(1200px))
+      padding rem(100px) 0
+
+  @media (max-width: rem(800px))
+      padding 0
+
+.gap
+  &-left
+    padding-left  rem(10px)
+    padding-top rem(50px)
+  &-right
+    padding-right  rem(10px)
+    padding-top rem(50px)
+
+.col
+  width 100%
+  margin 0 rem(20px)
+  max-width calc(100% - 2.66666rem);
+  margin-bottom rem(100px)
+
+  &-12
+    max-width calc(100% - 2.66666rem);
+    width 100%
+    margin-bottom rem(100px)
+    margin 0 rem(20px)
+    margin-bottom rem(100px)
+
+  &-10
+    width 100%
+    margin 0 rem(20px)
+    max-width calc(83.3333% - 2.66666rem);
+    margin-bottom rem(100px)
+
+  &-8
+    width 100%
+    margin 0 rem(20px)
+    max-width calc(66.66666% - 2.66666rem);
+    margin-bottom rem(100px)
+
+  &-4
+    width 100%
+    margin 0 rem(20px)
+    max-width calc(33.33333% - 2.66666rem);
+    margin-bottom rem(100px)
+
+  &-6
+    width 100%
+    margin 0 rem(20px)
+    max-width calc(50% - 2.66666rem);
+    margin-bottom rem(100px)
+
+  &-12,
+  &-10,
+  &-8,
+  &-4,
+  &-6
+
+    &.break1200
+      @media (max-width: rem(1200px))
+        max-width calc(100% - 2.66666rem);
+        padding 0
+        margin rem(10px) rem(20px)
+
+    &.break1000
+      @media (max-width: rem(1000px))
+        max-width calc(100% - 2.66666rem);
+        padding 0
+
+      @media (max-width: rem(1200px))
+        margin rem(10px) rem(20px)
+
+    &.break800
+      @media (max-width: rem(800px))
+        max-width calc(100% - 2.66666rem);
+        padding 0
+
+      @media (max-width: rem(1200px))
+        margin rem(10px) rem(20px)
+
+  &.anfrage
+    margin-bottom 0
+
+    p
+      margin-bottom 0
+
+.wrapper
+  .row
+    padding 0
+    width calc(100% + 36px)
+    margin-left rem(-20px)
+    margin-right rem(-20px)
+
+img.stretch
+  width 100%
+  height 100%
+  object-fit cover
+  object-position center center
+
+.prefix
+  &-1
+    margin-left calc(8.33333%);
+  &-3
+    margin-left calc(25%);
+  &-4
+    margin-left calc(33.33333%);
+
+.suffix
+  &-4
+    margin-right calc(33.33333%);
+
+img + p
+  margin-top rem(50px)
+
+.intro
+  font-size rem(56px)
+  line-height rem(75px)
+
+  @media (max-width: rem(1200px))
+    font-size rem(40px)
+    line-height rem(50px)
+
+.center
+  text-align center
+
+header
+  &.projekt
+    position relative
+    padding-bottom rem(50px)
+    margin-bottom rem(50px)
+    @media (max-width: rem(1000px))
+
+      h1
+        margin-bottom rem(50px)
+      p.type
+        margin-bottom 0
+        font-size rem(25px)
+
+    &.goodCoffee
+      @media (max-width: rem(1000px))
+        h1
+          font-size 40px
+      @media (max-width: rem(800px))
+        height auto
+        a.arrow
+          display none
+        h1
+          font-size calc(10px + 8vw)
+    &.veedelsbraeu
+      @media (max-width: rem(800px))
+        height auto
+        a.arrow
+          display none
+        h1
+          font-size calc(10px + 11vw)
+
+      @media (max-width: rem(1200px))
+        margin-bottom 0
+        padding-bottom 0
+        &:before
+        &:after
+          display none
+  &.datenschutz
+  &.impressum
+    @media (max-width: rem(800px))
+      height auto
+      a.arrow
+        display none
+      h1
+        font-size calc(10px + 11vw)
+
+.mockupCol
+  position relative
+  margin-bottom -50px !important
+  @media (max-width: 105rem)
+    margin-bottom -7vw !important
+
+
+
+  .mockupFace
+    position relative
+    pointer-events none
+    z-index 2
+
+  .mockupArrow
+    position absolute
+    top 35%
+    transform translateY(-50%)
+    z-index 5
+    cursor pointer
+
+    &.left
+      left 20px
+      @media (max-width: 600px)
+        left 0
+
+      img
+        transform rotate(180deg)
+
+    &.right
+      right 20px
+      @media (max-width: 600px)
+        right 0
+
+  .mockupNav
+    position absolute
+    z-index 5
+    left 50%
+    transform translateX(-50%)
+    bottom calc(9vw + 10px)
+
+
+    @media (min-width: 105rem)
+      bottom 150px
+
+    button
+      width 40px
+      height 5px
+      background medium
+      border none
+      margin-right 5px
+      transition all 300ms
+      cursor pointer
+      outline none
+
+      @media (max-width: 500px)
+        width 20px
+
+      &.active
+        background dark
+
+      &:hover
+        background dark
+
+      &:last-of-type
+        margin-right 0
+
+  .mockupContainer
+    position absolute
+    overflow-y scroll
+    z-index 1
+    top 4.2vw
+    left 16vw
+    right 16vw
+    height 38.4vw
+
+    &.animate
+      div:first-of-type
+        animation scroller 2000ms 1500ms forwards ease-out
+
+        @keyframes scroller
+          50%
+            transform translateY(-200px) translateX(0);
+          100%
+            transform translateY(-0px) translateX(0);
+
+
+
+    @media (min-width: 1000px)
+      right calc(16vw - 18px)
+
+    @media (min-width: 105rem)
+      top 68px
+      left 253px
+      width 1010px
+      height 593px
+
+    .mockupSlide
+      position absolute
+      opacity 0
+      display none
+      max-height 51.2vh
+      visibility hidden
+
+      img
+        margin-bottom 0
+        display block
+
+      &.prev
+        transform translateX(-100%)
+      &.next
+        transform translateX(100%)
+
+      &.active
+        display block
+        max-height 99999px
+        opacity 1
+        visibility visible
+        transform translateX(0)
+
+.impre
+  word-break break-all

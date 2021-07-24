@@ -1,0 +1,17 @@
+{
+  "name": "gulptest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "server": "php -S localhost:3000 && gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-stylus": "^2.0.6"
+  }
+}
